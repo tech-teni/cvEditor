@@ -9,6 +9,7 @@ import {
   editHeader,
   getselected,
   editSkillsText,
+  editexperienceText,
 } from "../store/slices/headerSlice";
 import { updateSelectedElement } from "../store/slices/selectedSlice";
 
@@ -138,9 +139,10 @@ const Experience = () => {
                           value={each.company.text}
                           onChange={(e) => {
                             dispatch(
-                              editSkillsText({
+                              editexperienceText({
                                 text: e.target.value,
                                 id: index,
+                                innerid: index + "c",
                               })
                             );
                             setSelectedw(e.target.value);
@@ -208,9 +210,10 @@ const Experience = () => {
                             value={each.time.text}
                             onChange={(e) => {
                               dispatch(
-                                editSkillsText({
+                                editexperienceText({
                                   text: e.target.value,
                                   id: index,
+                                  innerid: index + "t",
                                 })
                               );
                               setSelectedw(e.target.value);
@@ -278,9 +281,10 @@ const Experience = () => {
                         value={each.designation.text}
                         onChange={(e) => {
                           dispatch(
-                            editSkillsText({
+                            editexperienceText({
                               text: e.target.value,
                               id: index,
+                              innerid: index + "d",
                             })
                           );
                           setSelectedw(e.target.value);
@@ -343,12 +347,15 @@ const Experience = () => {
                               .fontFamily,
                         }}
                         type="text"
-                        value={each.summary.text}
+                        value={
+                          propStore?.header?.experiences[index].summary.text
+                        }
                         onChange={(e) => {
                           dispatch(
-                            editSkillsText({
+                            editexperienceText({
                               text: e.target.value,
                               id: index,
+                              innerid: index + "s",
                             })
                           );
                           setSelectedw(e.target.value);
@@ -411,11 +418,13 @@ const Experience = () => {
                         value={each.accomplishmentTitle.text}
                         onChange={(e) => {
                           dispatch(
-                            editSkillsText({
+                            editexperienceText({
                               text: e.target.value,
                               id: index,
+                              innerid: index + "a",
                             })
                           );
+
                           setSelectedw(e.target.value);
                         }}
                         // onMouseOut={() => {
@@ -484,9 +493,10 @@ const Experience = () => {
                               value={each.task[index].text}
                               onChange={(e) => {
                                 dispatch(
-                                  editSkillsText({
+                                  editexperienceText({
                                     text: e.target.value,
                                     id: index,
+                                    innerid: index + "l" + indexx,
                                   })
                                 );
                                 setSelectedw(e.target.value);

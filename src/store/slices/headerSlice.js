@@ -275,12 +275,6 @@ const initialState = {
           fontweight: "bold",
         },
       ],
-
-      fontsize: "18px",
-      fontFamily: "open sans",
-      color: "black",
-      selected: false,
-      fontweight: "bold",
     },
   ],
 };
@@ -296,6 +290,31 @@ export const headerSlice = createSlice({
           console.log(action.payload.text);
 
           return (state.skills.skills[index].text = action.payload.text);
+        }
+      });
+    },
+    editexperienceText: (state, action) => {
+      let theSelected = state.experiences.map((each, index) => {
+        if (index + "c" === action.payload.innerid) {
+          return (state.experiences[index].company.text = action.payload.text);
+        } else if (index + "t" === action.payload.innerid) {
+          return (state.experiences[index].time.text = action.payload.text);
+        } else if (index + "d" === action.payload.innerid) {
+          return (state.experiences[index].designation.text =
+            action.payload.text);
+        } else if (index + "s" === action.payload.innerid) {
+          return (state.experiences[index].summary.text = action.payload.text);
+        } else if (index + "a" === action.payload.innerid) {
+          return (state.experiences[index].accomplishmentTitle.text =
+            action.payload.text);
+        } else {
+          state.experiences[index].task.map((each, indexx) => {
+            console.log("thhhhiffff", index, indexx, action.payload.innerid);
+            if (index + "l" + indexx === action.payload.innerid) {
+              return (state.experiences[index].task[indexx].text =
+                action.payload.text);
+            }
+          });
         }
       });
     },
@@ -410,6 +429,7 @@ export const headerSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { editHeader, getselected, editSkillsText } = headerSlice.actions;
+export const { editHeader, getselected, editSkillsText, editexperienceText } =
+  headerSlice.actions;
 
 export default headerSlice.reducer;
